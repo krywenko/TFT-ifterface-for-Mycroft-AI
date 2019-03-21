@@ -1,0 +1,6 @@
+TIME="$(date '+%l:%M %p')"
+echo "cmd_1($TIME)" > /dev/ttyS2
+
+
+DATE="$(date '+%B %d')"
+echo "cmd_2($DATE)" > /dev/ttyS2

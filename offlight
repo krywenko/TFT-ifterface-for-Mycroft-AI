@@ -1,0 +1,17 @@
+#!/usr/bin/perl -w
+
+
+open(SUB, "tail -f /var/log/mycroft/voice.log  |  grep -oiP --line-buffered '(?<=__main__:handle_record_end:)[[:digit:]]+' |");
+
+while ($wind = <SUB>) {
+ 
+#print "cmd_3(off)";
+print "$wind";
+
+system('echo "cmd_3($wind)" > /dev/ttyS2 ');
+
+}
+
+
+
+

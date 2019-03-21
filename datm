@@ -1,0 +1,2 @@
+tail -f /var/log/mycroft/skills.log  |  grep  -a --line-buffered ICY-META:  | sed -u  s/[^\']*\'// | sed -u 's/..$//'
+

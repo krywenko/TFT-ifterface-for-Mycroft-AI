@@ -1,0 +1,27 @@
+#!/usr/bin/perl -w
+
+
+open(SUB, "/home/ai/./datm |");
+
+while ($data = <SUB>) {
+
+my ($Artist, $Song) = split /-/, $data;
+
+print "$data ";
+print "$Artist";
+print "$Song" ;
+my $song = `echo '$Song' | tr "(" "[" | tr ")" "]"`;
+
+print  "$song";
+system("echo 'cmd_6($Artist)' > /dev/ttyS2 ");
+system("echo 'cmd_7($song)' > /dev/ttyS2 ");
+
+
+#print "$data ";
+
+
+#system("echo 'cmd_6($data)' > /dev/ttyS2 ");
+
+
+}
+

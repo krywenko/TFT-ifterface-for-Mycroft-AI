@@ -1,0 +1,20 @@
+#!/usr/bin/perl -w
+
+
+open(SUB, "tail -f /var/log/mycroft/voice.log  |  grep -oiP --line-buffered '(?<=__main__:handle_record_begin:)[[:digit:]]+' |");
+
+
+
+while ($wind = <SUB>) {
+
+
+
+print "$wind ";
+
+system('echo "cmd_4($wind)" > /dev/ttyS2 ');
+
+
+
+}
+
+

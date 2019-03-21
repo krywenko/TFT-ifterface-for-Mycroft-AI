@@ -1,0 +1,2 @@
+tail -f /var/log/mycroft/skills.log  |  grep  -a --line-buffered ICY-NAME:  | sed -u 's/^.........//' 
+

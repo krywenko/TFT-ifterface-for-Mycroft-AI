@@ -1,0 +1,15 @@
+#!/usr/bin/perl -w
+
+
+open(SUB, "tail -f /var/log/mycroft/skills.log | grep -a --line-buffered   mpg123: |");
+
+while ($data = <SUB>) {
+
+print "$data ";
+#system('/home/ai/./DandTime');
+system('echo "cmd_9($data)" > /dev/ttyS2 ');
+system('/home/ai/./DandTime');
+
+}
+
+
