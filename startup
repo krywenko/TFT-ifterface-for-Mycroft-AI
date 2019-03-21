@@ -1,0 +1,5 @@
+#pulseaudio -D
+sleep 5
+mpv /home/ai/intro.wave
+cd /home/ai/mycroft-core
+./start-mycroft.sh all
