@@ -56,3 +56,7 @@ overlays=uart1 uart2
 now reboot and your uarts will be enabled
 
 okay good luck have fun
+
+
+  I can be found here if you wish comment or question 
+  https://community.openenergymonitor.org/t/mycroft-open-source-ai/10357/3
