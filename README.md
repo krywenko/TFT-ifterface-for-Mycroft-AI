@@ -11,7 +11,7 @@ the blue ring informs you that Mycroft is ready
 
 the green Ring informs you the Mycroft is listening for your command
 
-
+https://github.com/krywenko/TFT-ifterface-for-Mycroft-AI/blob/master/1ddfbf3520b62dc213e5bee336c7c551d883a17c_2_1035x688.jpeg
 
 simply copy to the ai home directory
 you may have to modify them slightly as I set it to operate in the home dir of ai ( home/ai )
