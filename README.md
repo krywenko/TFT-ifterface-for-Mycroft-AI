@@ -29,13 +29,21 @@ this will tell the screen to clear itself and will display blue ring you can cha
 then just add these lines to /etc/rc.local
 
 sudo -H -u ai /home/ai/./startup
+
 /home/ai/./ChNam >nul 2>&1 & echo "started station "  
+
 /home/ai/./META  >nul 2>&1 & echo "started Meta data" 
+
 /home/ai/./onlight >nul 2>&1 & echo "started ligt on" 
+
 /home/ai/./offlight>nul 2>&1 & echo "started light off" 
+
 /home/ai/./ont >nul 2>&1 & echo "started ont " 
+
 sudo -H -u root  echo "cmd_9(start)" > /dev/ttyS2
+
 /home/ai/./DandTime >nul 2>&1 & echo "sent time "
+
 /home/ai/./starttime >nul 2>&1 & echo "started timer "  
 
 if using orange pi on armbian OS such as I do you need to enable the Uarts just cd to /boot
