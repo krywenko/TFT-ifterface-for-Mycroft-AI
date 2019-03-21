@@ -1,1 +1,49 @@
 # TFT-ifterface-for-Mycroft-AI
+
+for those who might want to add AI to Open Energy Monitoring project.
+here a sketch for driving TFT_eSPI compatible screen also compatible RA8875 screen ( just point it away from the TFT-eSPI libary and point it at RA8875 library)
+it based on my other TFT graphing sketches so you can incorporate in to my other MQTT remote monitors and touch screen interfaces if you wish .
+
+this is the web music stream interface - it displays the Station, the Artists and the song titles.
+you can easily addin weather weather display or energy display…
+the blue ring informs you that Mycroft is ready
+
+
+the green Ring informs you the Mycroft is listening for your command
+
+
+
+simply copy to the ai home directory
+you may have to modify them slightly as I set it to operate in the home dir of ai ( home/ai )
+
+
+
+it communicates via serial connection to /dev/ttyS2 and esp (wemos_mini ). The ESP and screen are powered off the the two 5 volt pins on the Pi .
+once hooked up and you verified that you can talk to the screen from command line
+
+sudo echo "cmd_9( xxx)" > /dev/ttyS2
+
+this will tell the screen to clear itself and will display blue ring you can change the cmd_3 or 4 to turn from blue to green
+
+then just add these lines to /etc/rc.local
+
+sudo -H -u ai /home/ai/./startup
+/home/ai/./ChNam >nul 2>&1 & echo "started station "  
+/home/ai/./META  >nul 2>&1 & echo "started Meta data" 
+/home/ai/./onlight >nul 2>&1 & echo "started ligt on" 
+/home/ai/./offlight>nul 2>&1 & echo "started light off" 
+/home/ai/./ont >nul 2>&1 & echo "started ont " 
+sudo -H -u root  echo "cmd_9(start)" > /dev/ttyS2
+/home/ai/./DandTime >nul 2>&1 & echo "sent time "
+/home/ai/./starttime >nul 2>&1 & echo "started timer "  
+
+if using orange pi on armbian OS such as I do you need to enable the Uarts just cd to /boot
+nano armbianEnv.txt
+
+and add
+
+overlays=uart1 uart2
+
+now reboot and your uarts will be enabled
+
+okay good luck have fun
