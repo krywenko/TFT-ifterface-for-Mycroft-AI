@@ -3,12 +3,12 @@
 
 open(SUB, "tail -f /var/log/mycroft/voice.log  |  grep -oiP --line-buffered '(?<=__main__:handle_record_end:)[[:digit:]]+' |");
 
-while ($wind = <SUB>) {
+while ($data = <SUB>) {
  
 #print "cmd_3(off)";
-print "$wind";
+print "$data";
 
-system('echo "cmd_3($wind)" > /dev/ttyS2 ');
+system('echo "cmd_3($data)" > /dev/ttyS2 ');
 
 }
 
