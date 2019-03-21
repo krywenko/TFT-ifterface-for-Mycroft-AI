@@ -5,13 +5,13 @@ open(SUB, "tail -f /var/log/mycroft/voice.log  |  grep -oiP --line-buffered '(?<
 
 
 
-while ($wind = <SUB>) {
+while ($data = <SUB>) {
 
 
 
-print "$wind ";
+print "$data ";
 
-system('echo "cmd_4($wind)" > /dev/ttyS2 ');
+system('echo "cmd_4($data)" > /dev/ttyS2 ');
 
 
 
