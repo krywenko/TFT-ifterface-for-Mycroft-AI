@@ -8,6 +8,8 @@ while ($data = <SUB>) {
 print "$data ";
 #system('/home/ai/./DandTime');
 system('echo "cmd_9($data)" > /dev/ttyS2 ');
+#system("mosquitto_pub -h 192.168.168.150 -t '/ai/clear' -m '$data'"); Enable for Mqtt screens
+
 system('/home/ai/./DandTime');
 
 }
