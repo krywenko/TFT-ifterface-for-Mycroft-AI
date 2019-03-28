@@ -9,13 +9,16 @@ my ($Artist, $Song) = split /-/, $data;
 
 print "$data ";
 print "$Artist";
+my $artist = `echo '$Artist' | tr "(" "[" | tr ")" "]"`;
+
 print "$Song" ;
 my $song = `echo '$Song' | tr "(" "[" | tr ")" "]"`;
 
 print  "$song";
-system("echo 'cmd_6($Artist)' > /dev/ttyS2 ");
+system("echo 'cmd_6($artist)' > /dev/ttyS2 ");
+#system("mosquitto_pub -h 192.168.168.150 -t '/ai/artist' -m '$artist'"); # enable for MQTT
 system("echo 'cmd_7($song)' > /dev/ttyS2 ");
-
+#system("mosquitto_pub -h 192.168.168.150 -t '/ai/song' -m '$song'");
 
 #print "$data ";
 
