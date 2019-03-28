@@ -12,7 +12,7 @@ while ($data = <SUB>) {
 print "$data ";
 
 system('echo "cmd_4($data)" > /dev/ttyS2 ');
-
+# system("mosquitto_pub -h 192.168.168.150 -t '/ai/onlight' -m '$data'"); #enable for MQtt Screens
 
 
 }
