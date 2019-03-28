@@ -60,3 +60,5 @@ okay good luck have fun
 
   I can be found here if you wish comment or question 
   https://community.openenergymonitor.org/t/mycroft-open-source-ai/10357/3
+
+ai_Mqtt_esp.ino is a remote screen  that will display what the master serial screen does. or you can disable the serial screen and  only display through the mqtt screens 
