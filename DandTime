@@ -1,6 +1,8 @@
 TIME="$(date '+%l:%M %p')"
 echo "cmd_1($TIME)" > /dev/ttyS2
-
+#mosquitto_pub -h 192.168.168.150 -t '/ai/time' -m "$TIME" # enable for MQTT
 
 DATE="$(date '+%B %d')"
 echo "cmd_2($DATE)" > /dev/ttyS2
+#mosquitto_pub -h 192.168.168.150 -t '/ai/date' -m "$DATE"
+ 
