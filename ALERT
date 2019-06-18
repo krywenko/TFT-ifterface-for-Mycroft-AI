@@ -1,0 +1,39 @@
+#!/bin/bash
+
+ZONE="mb19_e.xml"    # enviroment Canada rss zone
+#ZONE="nt16_e.xml"
+
+prev="$(cat prev)"
+OUTPUT="$(curl -s  https://weather.gc.ca/rss/battleboard/${ZONE} | sed -n 's:.*<title>\(.*\)</title>.*:\1:p' | sed  '1d' | sed  's/in effect//gI' | cut -d',' -f1)"
+echo "${OUTPUT}"
+NO_WHITESPACE="$(echo -e "${OUTPUT}" | tr -d '[:space:]')"
+ 
+if [ $NO_WHITESPACE == 'Noalerts' ]
+   then
+     if [ $prev == 'Noalerts'  ]
+     then
+         echo " "
+     else
+          echo 'cmd_9(clear)' > /dev/ttyS2  #send command to serial to display on local TFT screen
+          mosquitto_pub -h 192.168.168.150 -t '/ai/clear' -m '1' #sends command to remote wifi connected TFT screen
+     fi
+       echo "${NO_WHITESPACE}" > prev
+       echo  all is good
+elif [ $NO_WHITESPACE == 'FrostWarning' ]   #silent Alarm just display warning on TFT Screen
+     then
+     echo 'cmd_5(Frost Warning)' > /dev/ttyS2
+     mosquitto_pub -h 192.168.168.150 -t '/ai/clear' -m '1'
+     mosquitto_pub -h 192.168.168.150 -t '/ai/station' -m 'Frost Warning'
+     echo  "frost warning"
+else                                       # full alarm   speech and display
+    /home/ai/mycroft-core/bin/mycroft-say-to stop
+    mpv Alarm.wav
+    echo 'cmd_5(Weather Alert)' > /dev/ttyS2
+    mosquitto_pub -h 192.168.168.150 -t '/ai/station' -m 'Weather Alert'
+    echo 'cmd_6($OUTPUT)' > /dev/ttyS2
+    mosquitto_pub -h 192.168.168.150 -t '/ai/artist' -m "${OUTPUT}"
+    /home/ai/mycroft-core/bin/mycroft-speak  weather alert     ${OUTPUT}
+    echo  ${OUTPUT}
+    echo "${NO_WHITESPACE}" > prev
+fi
+
