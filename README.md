@@ -63,6 +63,6 @@ okay good luck have fun
 
 ai_Mqtt_esp.ino is a remote screen  that will display what the master serial screen does. or you can disable the serial screen and  only display through the mqtt screens 
 
-added a weather alert script to display weather warning and sound off on them -- file "ALERT" modify that one it based on enviroment Canada RSS feed but adaptable to other weather Alert RSS   feeds from other countries  
+Update  june 18th -- added a weather alert script to display weather warning and sound off on them -- file "ALERT" modify that one it based on enviroment Canada RSS feed but adaptable to other weather Alert RSS   feeds from other countries  
 ![alt text](https://github.com/krywenko/TFT-ifterface-for-Mycroft-AI/blob/master/DSC05157.JPG)
 
