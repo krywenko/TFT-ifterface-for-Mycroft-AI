@@ -3,7 +3,7 @@
 ZONE="mb19_e.xml"    # enviroment Canada rss zone
 #ZONE="nt16_e.xml"
 
-prev="$(cat prev)"
+prev="$(cat /home/ai/prev)"
 OUTPUT="$(curl -s  https://weather.gc.ca/rss/battleboard/${ZONE} | sed -n 's:.*<title>\(.*\)</title>.*:\1:p' | sed  '1d' | sed  's/in effect//gI' | cut -d',' -f1)"
 echo "${OUTPUT}"
 NO_WHITESPACE="$(echo -e "${OUTPUT}" | tr -d '[:space:]')"
@@ -17,7 +17,7 @@ if [ $NO_WHITESPACE == 'Noalerts' ]
           echo 'cmd_9(clear)' > /dev/ttyS2  #send command to serial to display on local TFT screen
           mosquitto_pub -h 192.168.168.150 -t '/ai/clear' -m '1' #sends command to remote wifi connected TFT screen
      fi
-       echo "${NO_WHITESPACE}" > prev
+       echo "${NO_WHITESPACE}" > /home/ai/prev
        echo  all is good
 elif [ $NO_WHITESPACE == 'FrostWarning' ]   #silent Alarm just display warning on TFT Screen
      then
@@ -34,6 +34,6 @@ else                                       # full alarm   speech and display
     mosquitto_pub -h 192.168.168.150 -t '/ai/artist' -m "${OUTPUT}"
     /home/ai/mycroft-core/bin/mycroft-speak  weather alert     ${OUTPUT}
     echo  ${OUTPUT}
-    echo "${NO_WHITESPACE}" > prev
+    echo "${NO_WHITESPACE}" > /home/ai/prev
 fi
 
