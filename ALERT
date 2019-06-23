@@ -20,7 +20,7 @@ if [ $NO_WHITESPACE == 'Noalerts' ]
      fi
        echo "${NO_WHITESPACE}" > /home/ai/prev
        echo  all is good
-elif [ $NO_WHITESPACE == 'FrostWarning' ]   #silent Alarm just display warning on TFT Screen
+elif [ $NO_WHITESPACE == 'FROSTADVISORY' ]   #silent Alarm just display warning on TFT Screen
      then
      echo 'cmd_5(Frost Warning)' > /dev/ttyS2
      mosquitto_pub -h 192.168.168.150 -t '/ai/clear' -m '1'
