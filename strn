@@ -1,2 +1,4 @@
-tail -f /var/log/mycroft/skills.log  |  grep  -a --line-buffered ICY-NAME:  | sed -u 's/^.........//' 
+#tail -f /var/log/mycroft/skills.log  |  grep  -a --line-buffered ICY-NAME:  | sed -u 's/^.........//' 
+tail -f /var/log/mycroft/audio.log  |  grep  -a --line-buffered 'Playing streaming station'  | sed -u 's/^................................................................................................//' | sed -u "s/'//"
+
 
